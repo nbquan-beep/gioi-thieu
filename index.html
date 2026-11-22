@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nguyễn Bảo Quân</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e9eff4; --ink:#1d2733; --muted:#566475; --cat:#e8913a; --card:#ffffff; --line:#cfd9e2;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#141b23; --ink:#e8eef4; --muted:#9aa8b8; --cat:#f0a255; --card:#1d2630; --line:#2c3846; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,sans-serif;line-height:1.7}
+main{max-width:860px;margin:0 auto;padding:56px 24px 40px}
+.hero{display:grid;grid-template-columns:1fr 220px;gap:32px;align-items:center;margin-bottom:56px}
+h1{font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.05;margin:0 0 16px;font-weight:800;letter-spacing:-.02em}
+.role{font-size:1.15rem;color:var(--muted);margin:0}
+.cat{width:100%;height:auto}
+.cat .fur{fill:var(--cat)}
+.cat .ink{fill:var(--ink)}
+.cat .eye-w{fill:#fff}
+.cat .line{stroke:var(--ink);stroke-width:3;stroke-linecap:round;fill:none}
+section{border-top:2px solid var(--line);padding:28px 0}
+h2{font-size:1.3rem;margin:0 0 10px;font-weight:800}
+p{margin:0 0 12px;max-width:62ch}
+ul{margin:0;padding-left:20px;max-width:62ch}
+li{margin-bottom:4px}
+a{color:var(--ink);font-weight:500;text-decoration-color:var(--cat);text-decoration-thickness:3px;text-underline-offset:4px}
+a:hover,a:focus-visible{color:var(--cat)}
+a:focus-visible{outline:3px solid var(--cat);outline-offset:3px}
+footer{color:var(--muted);font-size:.9rem;padding-top:24px}
+@media (max-width:640px){
+  .hero{grid-template-columns:1fr}
+  .cat-wrap{order:-1;width:150px}
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <div>
+      <h1>Nguyễn<br>Bảo Quân</h1>
+      <p class="role">Sinh viên ngành Kỹ thuật phần mềm</p>
+    </div>
+    <div class="cat-wrap">
+      <svg class="cat" viewBox="0 0 200 190" role="img" aria-label="Hình một chú mèo cam có đôi mắt nhìn theo con trỏ chuột">
+        <path class="fur" d="M30 70 L38 8 L84 40 Z"/>
+        <path class="fur" d="M170 70 L162 8 L116 40 Z"/>
+        <ellipse class="fur" cx="100" cy="112" rx="78" ry="66"/>
+        <circle class="eye-w" cx="70" cy="100" r="16"/>
+        <circle class="eye-w" cx="130" cy="100" r="16"/>
+        <circle class="ink pupil" cx="70" cy="100" r="8"/>
+        <circle class="ink pupil" cx="130" cy="100" r="8"/>
+        <path class="ink" d="M92 124 H108 L100 134 Z"/>
+        <path class="line" d="M100 134 Q90 148 80 142 M100 134 Q110 148 120 142"/>
+        <path class="line" d="M52 126 L14 118 M52 136 L14 140 M148 126 L186 118 M148 136 L186 140"/>
+      </svg>
+    </div>
+  </header>
+
+  <section>
+    <h2>Giới thiệu</h2>
+    <p>Xin chào, mình là Quân. Mình đang học ngành Kỹ thuật phần mềm và đang tập viết những chương trình đầu tiên của riêng mình.</p>
+    <p>Mình muốn trở thành một lập trình viên viết code rõ ràng, dễ đọc và chạy đúng.</p>
+  </section>
+
+  <section>
+    <h2>Thú cưng yêu thích</h2>
+    <p>Mình thích mèo. Mèo ngủ giỏi, tò mò và luôn biết chỗ ấm nhất trong nhà. Hãy thử di chuyển chuột trên trang: chú mèo ở đầu trang sẽ nhìn theo bạn.</p>
+  </section>
+
+  <section>
+    <h2>Liên hệ</h2>
+    <ul>
+      <li>GitHub: <a href="https://github.com/nbquan-beep">github.com/nbquan-beep</a></li>
+    </ul>
+  </section>
+
+  <footer>© 2026 Nguyễn Bảo Quân</footer>
+</main>
+
+<script>
+(function(){
+  var pupils = document.querySelectorAll('.pupil');
+  var svg = document.querySelector('.cat');
+  if(!svg) return;
+  document.addEventListener('mousemove', function(e){
+    var r = svg.getBoundingClientRect();
+    pupils.forEach(function(p, i){
+      var cx = r.left + r.width * (i ? 0.65 : 0.35);
+      var cy = r.top + r.height * 0.53;
+      var dx = e.clientX - cx, dy = e.clientY - cy;
+      var d = Math.hypot(dx, dy) || 1;
+      var k = Math.min(6, d / 20);
+      p.style.transform = 'translate(' + (dx / d * k) + 'px,' + (dy / d * k) + 'px)';
+    });
+  });
+})();
+</script>
+</body>
+</html>
